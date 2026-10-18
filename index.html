@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michel Adventures — Climbing Trips &amp; Outdoor Adventures</title>
+    <meta name="description" content="The adventure log of Michel Laclé: climbing trips, rock crags, and outdoor expeditions — photos, videos, and trip reports from the places I've been.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Michel Adventures">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="Michel Adventures — Climbing Trips &amp; Outdoor Adventures">
+    <meta property="og:description" content="Climbing trips, rock crags, and outdoor expeditions — photos, videos, and trip reports.">
+    <meta property="og:url" content="https://micheladventures.com/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Michel Adventures — Climbing Trips &amp; Outdoor Adventures">
+    <meta name="twitter:description" content="Climbing trips, rock crags, and outdoor expeditions — photos, videos, and trip reports.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://micheladventures.com/">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="wrap">
+            <a class="brand" href="/">michel<span class="accent">adventures</span>.com</a>
+            <button class="menu-btn" aria-label="Toggle menu">&#9776;</button>
+            <nav class="site-nav">
+                <a href="/#trips" class="active">Trips</a>
+                <a href="/trips/cherokee-rock-village.html">Cherokee Rock Village</a>
+                <a href="/">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="wrap">
+        <section class="hero">
+            <span class="kicker">Adventure log</span>
+            <h1>Climbing trips &amp; outdoor adventures.</h1>
+            <p class="lead">I document my climbing trips and outdoor adventures here — the crags, the trips, the photos, and the stories behind them. New entries land as I go.</p>
+        </section>
+
+        <section class="block" id="trips">
+            <span class="section-label">Trips</span>
+            <h2>Where I've been</h2>
+            <div class="trip-grid">
+                <!-- TRIP CARD: new trips get added above this marker, newest first -->
+                <a class="trip-card" href="/trips/cherokee-rock-village.html">
+                    <div class="trip-meta">2026 &middot; Bouldering</div>
+                    <h3>Sand Rock &amp; Cherokee Rock Village</h3>
+                    <p class="desc">A 2026 climbing trip to the sandstone boulder fields of Sand Rock, Alabama — including the historic Cherokee Rock Village crag.</p>
+                    <span class="status">Photos &amp; videos coming</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="block" id="about">
+            <span class="section-label">About</span>
+            <h2>About this site</h2>
+            <p class="body">This is my personal log for climbing and outdoor adventures. Each trip gets its own page with photos, videos, and notes on the routes and the area. Content is added as trips wrap up — expect this place to keep growing.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">
+            <div class="foot-brand">micheladventures.com</div>
+            <div class="foot-links">
+                <a href="/#trips">Trips</a>
+                <a href="/trips/cherokee-rock-village.html">Cherokee Rock Village</a>
+            </div>
+        </div>
+        <div class="wrap">
+            <p class="copyright">&copy; 2026 Michel Lacl&eacute;. All photos and content personal to the author.</p>
+        </div>
+    </footer>
+
+    <script>
+    const menuBtn = document.querySelector('.menu-btn');
+    const siteNav = document.querySelector('.site-nav');
+    if (menuBtn && siteNav) {
+        menuBtn.addEventListener('click', () => siteNav.classList.toggle('open'));
+        siteNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => siteNav.classList.remove('open')));
+    }
+    </script>
+</body>
+</html>

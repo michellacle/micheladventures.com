@@ -1,0 +1,12 @@
+# Michel Adventures
+
+> Personal adventure log for climbing trips and outdoor adventures.
+
+micheladventures.com is the personal adventure log of Michel Laclé. Each climbing trip and outdoor adventure gets its own page with photos, videos, and trip notes. The site is a static HTML site hosted on GitHub Pages.
+
+## Pages
+
+- [Home](https://micheladventures.com/): Trip list and site intro
+- [Cherokee Rock Village, Sand Rock AL](https://micheladventures.com/trips/cherokee-rock-village.html): 2026 bouldering trip to Sand Rock, Alabama — first entry
+
+New trip pages are added as trips wrap up.

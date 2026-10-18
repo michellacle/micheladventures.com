@@ -1,0 +1,177 @@
+/* Michel Adventures — shared design system */
+:root {
+    --bg: #0e0f0d;
+    --surface: #151712;
+    --surface-2: #1b1e18;
+    --text: #ece9e2;
+    --text-secondary: #a8a49a;
+    --text-tertiary: #6f6c63;
+    --border: #262a22;
+    --accent: #d99a4e;
+    --accent-dim: rgba(217, 154, 78, 0.14);
+    --accent-ink: #15100a;
+    --green: #7d9a6f;
+    --green-dim: rgba(125, 154, 111, 0.14);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text);
+    background-color: var(--bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* Header */
+.site-header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(14, 15, 13, 0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+.site-header .wrap {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 1rem; padding-bottom: 1rem;
+}
+.brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600; font-size: 0.95rem; letter-spacing: 0.04em;
+    color: var(--text); text-decoration: none;
+}
+.brand .accent { color: var(--accent); }
+.site-nav { display: flex; gap: 1.5rem; align-items: center; }
+.site-nav a {
+    font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-secondary); text-decoration: none;
+}
+.site-nav a:hover, .site-nav a.active { color: var(--text); }
+.menu-btn {
+    display: none; background: none; border: 1px solid var(--border);
+    color: var(--text); font-size: 1.2rem; padding: 0.15rem 0.6rem; border-radius: 6px;
+    cursor: pointer;
+}
+@media (max-width: 640px) {
+    .site-nav {
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: var(--surface);
+        border-bottom: 1px solid var(--border); padding: 0.5rem 0;
+    }
+    .site-nav.open { display: flex; }
+    .site-nav a { padding: 0.8rem 1.5rem; }
+    .menu-btn { display: block; }
+}
+
+/* Hero */
+.hero { padding: 5.5rem 0 4rem; }
+.kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); display: block; margin-bottom: 1.1rem;
+}
+.hero h1 {
+    font-size: clamp(2.1rem, 6vw, 3.4rem); font-weight: 600;
+    line-height: 1.12; letter-spacing: -0.02em; margin-bottom: 1.2rem;
+}
+.lead { font-size: 1.1rem; color: var(--text-secondary); max-width: 60ch; }
+
+/* Sections */
+section.block { padding: 3rem 0; border-top: 1px solid var(--border); }
+section.block:first-of-type { border-top: none; }
+.section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--text-tertiary); display: block; margin-bottom: 0.9rem;
+}
+h2 { font-size: 1.7rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 1rem; }
+p.body { color: var(--text-secondary); max-width: 68ch; }
+p.body + p.body { margin-top: 1rem; }
+
+/* Trip cards */
+.trip-card {
+    display: block; text-decoration: none; color: inherit;
+    border: 1px solid var(--border); border-radius: 14px;
+    background: var(--surface); padding: 1.8rem;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.trip-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.trip-grid { display: grid; gap: 1rem; }
+.trip-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.7rem;
+}
+.trip-card h3 { font-size: 1.35rem; font-weight: 600; margin-bottom: 0.5rem; }
+.trip-card .desc { color: var(--text-secondary); font-size: 0.98rem; }
+.trip-card .status {
+    display: inline-block; margin-top: 0.9rem;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--green); background: var(--green-dim);
+    padding: 0.25rem 0.65rem; border-radius: 999px;
+}
+
+/* Trip page */
+.trip-hero { padding: 4.5rem 0 2.5rem; }
+.trip-hero .place { color: var(--text-secondary); font-size: 1.05rem; margin-top: 0.8rem; }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+.fact {
+    border: 1px solid var(--border); border-radius: 12px;
+    background: var(--surface); padding: 1.1rem 1.2rem;
+}
+.fact .k {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-tertiary);
+    display: block; margin-bottom: 0.35rem;
+}
+.fact .v { font-size: 0.98rem; font-weight: 500; }
+
+/* Gallery */
+.gallery {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.8rem;
+}
+.gallery img {
+    width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+    border-radius: 10px; border: 1px solid var(--border); display: block;
+}
+.empty-state {
+    border: 1px dashed var(--border); border-radius: 12px;
+    padding: 2.2rem 1.5rem; text-align: center;
+    color: var(--text-tertiary); font-size: 0.95rem;
+    background: var(--surface);
+}
+.empty-state .hint { font-size: 0.82rem; color: var(--text-tertiary); margin-top: 0.4rem; opacity: 0.8; }
+
+/* Video grid */
+.video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+.video-grid video, .video-grid iframe {
+    width: 100%; aspect-ratio: 16 / 9; border-radius: 12px;
+    border: 1px solid var(--border); background: var(--surface);
+    display: block;
+}
+
+/* Back link */
+.back-link {
+    display: inline-block; margin-bottom: 2rem;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--text-tertiary); text-decoration: none;
+}
+.back-link:hover { color: var(--accent); }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--border); margin-top: 4rem; padding: 2.5rem 0 3rem; }
+.site-footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.site-footer .foot-brand { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--text-secondary); }
+.site-footer .foot-links { display: flex; gap: 1.4rem; }
+.site-footer .foot-links a { font-size: 0.8rem; color: var(--text-tertiary); text-decoration: none; }
+.site-footer .foot-links a:hover { color: var(--text); }
+.copyright { font-size: 0.75rem; color: var(--text-tertiary); margin-top: 1rem; }
