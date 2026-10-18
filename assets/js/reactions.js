@@ -109,7 +109,7 @@
         if (!bar || !state.photos.has(photoId)) return;
         var d = state.photos.get(photoId);
         KINDS.forEach(function (kind) {
-            var c = bar.querySelector('.pf-count[data-kind="' + kind + '"]');
+            var c = bar.querySelector('.pf-btn[data-kind="' + kind + '"] .pf-count');
             if (c) c.textContent = d.reactions[kind] || 0;
         });
         var cc = bar.querySelector(".pf-comments .pf-count");
