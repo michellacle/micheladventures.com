@@ -175,8 +175,8 @@
 
     function ensureSignedIn(photoId, then) {
         if (getToken()) return then();
-        askEmail(photoId, function (email) {
-            api("/session", { method: "POST", body: JSON.stringify({ email: email }) })
+        askEmail(photoId, function (info) {
+            api("/session", { method: "POST", body: JSON.stringify(info) })
                 .then(function (d) {
                     setToken(d.token);
                     state.email = d.email;
@@ -191,14 +191,22 @@
         if (existing) existing.remove();
         var m = el("div", "ma-modal");
         m.id = "ma-signin-modal";
+        var inpStyle = "width:100%;padding:0.55rem 0.7rem;border:1px solid var(--border);" +
+            "border-radius:8px;font:inherit;background:var(--surface)";
         m.innerHTML =
             '<div class="ma-modal-card">' +
             '<div class="ma-modal-title">Join the conversation</div>' +
             '<p class="ma-modal-sub">Enter your email to like photos and leave comments. ' +
             'No password — we remember you for 60 days.</p>' +
-            '<form class="ma-modal-form"><input type="email" required placeholder="you@example.com" ' +
-            'style="width:100%;margin-bottom:0.6rem;padding:0.55rem 0.7rem;border:1px solid var(--border);' +
-            'border-radius:8px;font:inherit;background:var(--surface)">' +
+            '<form class="ma-modal-form"><input type="email" class="ma-email" required placeholder="you@example.com" ' +
+            'style="' + inpStyle + 'margin-bottom:0.6rem">' +
+            '<div style="display:flex;gap:0.5rem;margin-bottom:0.6rem">' +
+            '<input type="text" class="ma-fname" placeholder="First name (optional)" style="' + inpStyle + 'flex:1">' +
+            '<input type="text" class="ma-lname" placeholder="Last name (optional)" style="' + inpStyle + 'flex:1">' +
+            '</div>' +
+            '<label style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.8rem;font-size:0.9rem;' +
+            'color:var(--text-secondary);cursor:pointer">' +
+            '<input type="checkbox" class="ma-wants" style="width:auto">Email me about new adventures &amp; posts</label>' +
             '<div style="display:flex;gap:0.5rem">' +
             '<button type="submit" style="flex:1;padding:0.55rem;border:none;border-radius:8px;' +
             'background:var(--accent);color:var(--accent-ink);font:inherit;font-weight:600;cursor:pointer">Continue</button>' +
@@ -212,12 +220,17 @@
         document.addEventListener("click", onDoc, true);
         m.querySelector("form").addEventListener("submit", function (e) {
             e.preventDefault();
-            var email = m.querySelector("input").value.trim();
+            var email = m.querySelector(".ma-email").value.trim();
             if (!email) return;
             close();
-            cb(email);
+            cb({
+                email: email,
+                first_name: m.querySelector(".ma-fname").value.trim() || null,
+                last_name: m.querySelector(".ma-lname").value.trim() || null,
+                wants_updates: m.querySelector(".ma-wants").checked
+            });
         });
-        m.querySelector("input").focus();
+        m.querySelector(".ma-email").focus();
     }
 
     function onReaction(photoId, kind) {
