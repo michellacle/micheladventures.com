@@ -8,18 +8,30 @@
     var API_BASE = "https://thinksmart.life/api/micheladventures";
     var KINDS = ["like", "dislike", "none"];
     var LABELS = { like: "👍", dislike: "👎", none: "😐" };
+    var TOKEN_KEY = "ma_session_token";
+
+    function getToken() {
+        try { return localStorage.getItem(TOKEN_KEY) || ""; } catch (e) { return ""; }
+    }
+    function setToken(t) {
+        try {
+            if (t) localStorage.setItem(TOKEN_KEY, t);
+            else localStorage.removeItem(TOKEN_KEY);
+        } catch (e) { }
+    }
 
     var state = {
-        photos: new Map(), // id -> {reactions, comments(count)}
-        signedIn: !!document.cookie.indexOf("michadv_session=") >= 0,
+        photos: new Map(), // id -> {reactions, comments(count), my_reaction}
         email: null,
         busy: new Set() // photo ids with an in-flight write
     };
 
     function api(path, opts) {
+        var headers = { "Content-Type": "application/json" };
+        var tok = getToken();
+        if (tok) headers["Authorization"] = "Bearer " + tok;
         return fetch(API_BASE + path, Object.assign({
-            credentials: "include",
-            headers: { "Content-Type": "application/json" }
+            headers: headers
         }, opts || {})).then(function (r) {
             if (!r.ok) {
                 return r.json().catch(function () { return {}; })
@@ -159,11 +171,11 @@
     // ---------- actions ------------------------------------------------------
 
     function ensureSignedIn(photoId, then) {
-        if (state.signedIn) return then();
+        if (getToken()) return then();
         askEmail(photoId, function (email) {
             api("/session", { method: "POST", body: JSON.stringify({ email: email }) })
                 .then(function (d) {
-                    state.signedIn = true;
+                    setToken(d.token);
                     state.email = d.email;
                     then();
                 })
@@ -273,7 +285,8 @@
         api("/photos").then(function (d) {
             d.photos.forEach(function (p) {
                 state.photos.set(p.id, {
-                    reactions: p.reactions, comments: p.comments, my_reaction: null
+                    reactions: p.reactions, comments: p.comments,
+                    my_reaction: p.my_reaction || null
                 });
                 renderCounts(p.id);
             });
