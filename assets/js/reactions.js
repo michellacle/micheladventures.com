@@ -123,6 +123,9 @@
             if (!p) return;
             var list = p.querySelector(".pf-comment-list");
             list.innerHTML = "";
+            var pstate = state.photos.get(photoId);
+            if (pstate) { pstate.comments = d.comments.length; pstate.my_reaction = d.my_reaction; }
+            renderCounts(photoId);
             if (!d.comments.length) {
                 list.appendChild(el("div", "pf-empty", "No comments yet — start the conversation."));
             }
