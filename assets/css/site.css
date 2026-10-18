@@ -184,6 +184,86 @@ p.body + p.body { margin-top: 1rem; }
 }
 .back-link:hover { color: var(--accent); }
 
+/* Photo reactions + comments (ticket 0081) */
+.photo-item { margin: 0; }
+.photo-footbar {
+    display: flex; align-items: center; gap: 0.3rem;
+    margin-top: 0.45rem;
+}
+.pf-btn {
+    display: inline-flex; align-items: center; gap: 0.25rem;
+    border: 1px solid var(--border); border-radius: 999px;
+    background: var(--surface); padding: 0.18rem 0.6rem;
+    font-size: 0.8rem; color: var(--text-secondary);
+    cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease;
+}
+.pf-btn:hover { border-color: var(--accent); }
+.pf-btn .pf-ico { font-size: 0.85rem; line-height: 1; }
+.pf-btn .pf-count {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    color: var(--text-tertiary);
+}
+.pf-btn.is-mine { border-color: var(--accent); background: var(--accent-dim); }
+.pf-btn.is-mine .pf-count { color: var(--accent); font-weight: 600; }
+.photo-footbar[data-mine="like"] .pf-btn[data-kind="like"],
+.photo-footbar[data-mine="dislike"] .pf-btn[data-kind="dislike"],
+.photo-footbar[data-mine="none"] .pf-btn[data-kind="none"] {
+    border-color: var(--accent); background: var(--accent-dim);
+}
+.pf-status {
+    font-size: 0.75rem; color: var(--text-tertiary);
+    margin-left: 0.4rem;
+}
+.pf-status.pf-err { color: #b0432f; }
+
+.photo-panel {
+    margin-top: 0.7rem; border: 1px solid var(--border); border-radius: 10px;
+    background: var(--surface); padding: 0.8rem 0.9rem;
+}
+.pf-comment-list { display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 0.7rem; }
+.pf-empty { font-size: 0.85rem; color: var(--text-tertiary); }
+.pf-comment { display: flex; flex-direction: column; gap: 0.1rem; }
+.pf-meta { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; }
+.pf-meta .pf-who { font-weight: 600; color: var(--text-secondary); }
+.pf-meta .pf-when { color: var(--text-tertiary); font-size: 0.72rem; }
+.pf-own { background: var(--surface-2); border-radius: 8px; padding: 0.4rem 0.5rem; }
+.pf-own .pf-who::after { content: " · you"; color: var(--green); }
+.pf-del {
+    margin-left: auto; border: none; background: none; cursor: pointer;
+    color: var(--text-tertiary); font-size: 0.75rem; padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+}
+.pf-del:hover { color: #b0432f; background: rgba(176, 67, 47, 0.08); }
+.pf-text { font-size: 0.9rem; color: var(--text); white-space: pre-wrap; word-break: break-word; }
+.pf-comment-form { display: flex; flex-direction: column; gap: 0.5rem; }
+.pf-input {
+    width: 100%; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--surface); padding: 0.5rem 0.6rem;
+    font: inherit; font-size: 0.9rem; resize: vertical; color: var(--text);
+}
+.pf-input:focus { outline: none; border-color: var(--accent); }
+.pf-send {
+    align-self: flex-end; border: none; border-radius: 8px;
+    background: var(--accent); color: var(--accent-ink);
+    font: inherit; font-size: 0.85rem; font-weight: 600;
+    padding: 0.45rem 1.1rem; cursor: pointer;
+}
+.pf-send:hover { filter: brightness(1.06); }
+
+/* Sign-in modal */
+.ma-modal {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(45, 42, 36, 0.45);
+    display: flex; align-items: center; justify-content: center; padding: 1rem;
+}
+.ma-modal-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    box-shadow: 0 10px 40px rgba(45, 42, 36, 0.25);
+    padding: 1.5rem; max-width: 380px; width: 100%;
+}
+.ma-modal-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+.ma-modal-sub { font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem; }
+
 /* Footer */
 .site-footer { border-top: 1px solid var(--border); margin-top: 4rem; padding: 2.5rem 0 3rem; }
 .site-footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
