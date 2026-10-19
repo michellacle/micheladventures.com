@@ -204,9 +204,6 @@
             '<input type="text" class="ma-fname" placeholder="First name (optional)" style="' + inpStyle + 'flex:1">' +
             '<input type="text" class="ma-lname" placeholder="Last name (optional)" style="' + inpStyle + 'flex:1">' +
             '</div>' +
-            '<label style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.8rem;font-size:0.9rem;' +
-            'color:var(--text-secondary);cursor:pointer">' +
-            '<input type="checkbox" class="ma-wants" style="width:auto">Email me about new adventures &amp; posts</label>' +
             '<div style="display:flex;gap:0.5rem">' +
             '<button type="submit" style="flex:1;padding:0.55rem;border:none;border-radius:8px;' +
             'background:var(--accent);color:var(--accent-ink);font:inherit;font-weight:600;cursor:pointer">Continue</button>' +
@@ -226,8 +223,7 @@
             cb({
                 email: email,
                 first_name: m.querySelector(".ma-fname").value.trim() || null,
-                last_name: m.querySelector(".ma-lname").value.trim() || null,
-                wants_updates: m.querySelector(".ma-wants").checked
+                last_name: m.querySelector(".ma-lname").value.trim() || null
             });
         });
         m.querySelector(".ma-email").focus();
