@@ -289,6 +289,7 @@
                 fig.appendChild(item);
                 host = fig;
             }
+            if (!host.id) host.id = "photo-" + photoId;
             host.appendChild(footbar(photoId));
             host.appendChild(panel(photoId));
             state.photos.set(photoId, { reactions: { like: 0, dislike: 0, none: 0 }, comments: 0 });
